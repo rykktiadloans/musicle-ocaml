@@ -1,0 +1,4 @@
+(library
+  (name audio)
+  (libraries gstreamer logging)
+  (modules audio))

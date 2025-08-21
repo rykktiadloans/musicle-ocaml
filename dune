@@ -1,0 +1,5 @@
+(executable
+  (name musicle)
+  (public_name main)
+  (libraries containers logging audio)
+  (flags (:standard -warn-error "-usused-value-declaration")))
