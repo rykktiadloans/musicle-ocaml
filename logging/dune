@@ -1,3 +1,4 @@
 (library
   (name logging)
+  (libraries eio_main)
   (modules logging))

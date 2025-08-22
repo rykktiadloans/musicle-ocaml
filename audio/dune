@@ -1,4 +1,4 @@
 (library
   (name audio)
-  (libraries gstreamer logging)
+  (libraries gstreamer logging eio_main)
   (modules audio))

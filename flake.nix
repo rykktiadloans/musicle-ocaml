@@ -19,8 +19,11 @@
       ocamlPackages.ocamlformat-rpc-lib
       ocamlPackages.ocamlformat
       ocamlPackages.gstreamer
+      ocamlPackages.eio_main
+      libev
       gst_all_1.gstreamer
       gst_all_1.gst-plugins-good
+      gst_all_1.gst-plugins-bad
     ];
   in
   {

@@ -1,5 +1,5 @@
 (executable
   (name musicle)
   (public_name main)
-  (libraries containers logging audio)
+  (libraries containers logging audio eio_main)
   (flags (:standard -warn-error "-usused-value-declaration")))
