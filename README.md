@@ -2,7 +2,7 @@
 
 Musicle is a game-like thing made in Ocaml. The program plays 5 seconds of any song saved on your device and you have to guess it!
 
-(Technically it's probably going to be more to Anki then Wordle but whatever)
+(Technically it's probably going to be closer to Anki then Wordle but whatever)
 
 ## Usage
 

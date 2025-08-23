@@ -20,7 +20,8 @@ let print_help () =
 
 let get_command () =
   if Array.length Sys.argv < 2 then (
-    print_string "No command supplied! You can see the list using 'help' command\n";
+    print_string
+      "No command supplied! You can see the list using 'help' command\n";
     exit 0)
   else
     match Sys.argv.(1) with
@@ -48,6 +49,27 @@ let rec print_time_remaining env time : unit =
     in
     operate ()
 
+let print_track file env =
+  let tags = Audio.get_tags file in
+  let filename =
+    match Audio.get_title tags with
+    | None -> Filename.basename file |> Filename.remove_extension
+    | Some track -> track
+  in
+  let album_part =
+    match Audio.get_album tags with
+    | None -> ""
+    | Some album -> " from " ^ album
+  in
+  let artist_part =
+    match Audio.get_author tags with
+    | None -> ""
+    | Some album -> " by " ^ album
+  in
+  print env
+    (String.concat ""
+       [ "The track was "; filename; album_part; artist_part; "\n" ])
+
 let single_round files env =
   let file_to_play = Random.int (List.length files) |> List.nth files in
   Eio.Fiber.both
@@ -55,8 +77,7 @@ let single_round files env =
     (fun () -> print_time_remaining env 5);
   print env "Press enter to reveal the track";
   ignore @@ read_line ();
-  let filename = Filename.basename file_to_play |> Filename.remove_extension in
-  print env ("The track was " ^ filename ^ "\n")
+  print_track file_to_play env
 
 let rec play_many env files =
   single_round files env;
