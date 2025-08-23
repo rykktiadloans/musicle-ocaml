@@ -20,6 +20,8 @@
       ocamlPackages.ocamlformat
       ocamlPackages.gstreamer
       ocamlPackages.eio_main
+      ocamlPackages.ocaml_sqlite3
+      sqlite
       libev
       gst_all_1.gstreamer
       gst_all_1.gst-plugins-good
