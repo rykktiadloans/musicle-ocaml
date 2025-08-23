@@ -7,16 +7,27 @@ type commands =
   | Set_music_dir
   | Once
   | Many
+  | Help
+
+let print_help () =
+  print_string @@ "Usage:\n"
+  ^ "  musicle <command> [<other potential arguments>]\n\n"
+  ^ "List of commands:\n" ^ "  once          -> play Musicle for 1 round\n"
+  ^ "  many          -> play Musicle for any amount of rounds in a row\n"
+  ^ "  set_music_dir -> set the directory with the music files\n"
+  ^ "    NOTE: requires an additional argument with the path to said directory\n"
+  ^ "  help          -> print this message about how to use this program\n"
 
 let get_command () =
   if Array.length Sys.argv < 2 then (
-    print_string "No command supplied!\n";
+    print_string "No command supplied! You can see the list using 'help' command\n";
     exit 0)
   else
     match Sys.argv.(1) with
     | "set_music_dir" -> Set_music_dir
     | "once" -> Once
     | "many" -> Many
+    | "help" -> Help
     | any ->
         let error = Printf.sprintf "%s is not a valid command" any in
         raise @@ Wrong_command error
@@ -82,6 +93,7 @@ let ensure_music_dir_exists conn =
 
 let choose command conn =
   match command with
+  | Help -> print_help ()
   | Set_music_dir -> set_music_dir conn
   | Once ->
       ensure_music_dir_exists conn;

@@ -13,8 +13,6 @@
       ocaml
       dune_3  
       ocamlPackages.findlib
-      ocamlPackages.base
-      ocamlPackages.core_kernel
       ocamlPackages.containers
       ocamlPackages.ocamlformat-rpc-lib
       ocamlPackages.ocamlformat
