@@ -1,0 +1,4 @@
+(library
+  (name database)
+  (libraries sqlite3 logging)
+  (modules settings conn))
