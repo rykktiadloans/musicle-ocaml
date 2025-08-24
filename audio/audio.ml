@@ -40,7 +40,9 @@ let duration_in_seconds file =
   let pipeline = G.Pipeline.parse_launch @@ get_playbin file in
   ignore @@ G.Element.set_state pipeline G.Element.State_playing;
   ignore @@ G.Element.get_state pipeline;
-  let duration = G.Element.duration pipeline G.Format.Time in
+  let duration =
+    try G.Element.duration pipeline G.Format.Time with G.Failed -> 10000000000L
+  in
   ignore @@ G.Element.set_state pipeline G.Element.State_null;
   Int64.to_int @@ Int64.div duration 1000000000L
 

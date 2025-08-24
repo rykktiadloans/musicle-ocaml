@@ -1,4 +1,3 @@
-(*open Containers*)
 open Database
 
 exception Wrong_command of string
@@ -70,7 +69,7 @@ let print_track file env =
     (String.concat ""
        [ "The track was "; filename; album_part; artist_part; "\n" ])
 
-let single_round files env =
+let rec single_round files env =
   let file_to_play = Random.int (List.length files) |> List.nth files in
   Eio.Fiber.both
     (fun () -> Audio.play_file env file_to_play)
